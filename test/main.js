@@ -37,7 +37,9 @@ describe('stretchly', function () {
   }
 
   beforeEach(function () {
-    fs.mkdirSync(tempDir)
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir)
+    }
 
     this.app = new Application({
       path: electronPath,
