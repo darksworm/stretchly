@@ -11,6 +11,12 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
+    - uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: '88.0.4324.96'
+    - run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
     - name: Set Timezone
       uses: szenius/set-timezone@v1.0
       with:
@@ -24,12 +30,6 @@ jobs:
         node-version: '12.18.3'
     - run: npm install npm -g
     - run: npm install
-    - uses: nanasess/setup-chromedriver@master
-      with:
-        chromedriver-version: '88.0.4324.96'
-    - run: |
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
     - run: npx nyc --reporter=lcov npm test
       env:
         CI: true
