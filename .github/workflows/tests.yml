@@ -14,9 +14,12 @@ jobs:
     - uses: nanasess/setup-chromedriver@master
       with:
         chromedriver-version: '88.0.4324.96'
-    - run: |
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
+    - name: export display
+      if: matrix.os != 'windows-latest'
+      run: export DISPLAY=:99
+      
+    - run: chromedriver --url-base=/wd/hub &
+    
     - name: Set Timezone
       uses: szenius/set-timezone@v1.0
       with:
