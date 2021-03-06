@@ -5,6 +5,7 @@ const AppSettings = require('../app/utils/settings')
 const chai = require('chai')
 const chaiAsPromised = require('chai-as-promised')
 
+const fs = require('fs')
 const path = require('path')
 const rimraf = require('rimraf')
 
@@ -36,6 +37,8 @@ describe('stretchly', function () {
   }
 
   beforeEach(function () {
+    fs.mkdirSync(tempDir)
+
     this.app = new Application({
       path: electronPath,
       args: [
@@ -43,8 +46,6 @@ describe('stretchly', function () {
       ],
       chromeDriverArgs: [
         '--no-sandbox',
-        '--headless',
-        '--disable-gpu',
         '--disable-dev-shm-usage',
         `--user-data-dir=${tempDir}`
       ]
