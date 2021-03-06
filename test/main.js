@@ -42,7 +42,11 @@ describe('stretchly', function () {
         `${__dirname}/../app`
       ],
       chromeDriverArgs: [
-        `--user-data-dir=${tempDir}`
+        `--user-data-dir=${tempDir}`,
+        '--no-sandbox',
+        '--headless',
+        '--disable-gpu',
+        '--disable-dev-shm-usage'
       ]
     })
   })
