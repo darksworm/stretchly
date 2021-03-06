@@ -17,9 +17,7 @@ jobs:
     - name: export display
       if: matrix.os != 'windows-latest'
       run: export DISPLAY=:99
-      
-    - run: chromedriver --url-base=/wd/hub &
-    
+          
     - name: Set Timezone
       uses: szenius/set-timezone@v1.0
       with:
