@@ -11,14 +11,10 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-    - uses: nanasess/setup-chromedriver@master
-      with:
-        chromedriver-version: '89.0.4389.23'
-    - name: virtaul screen
+    - name: virtual screen
       if: matrix.os != 'windows-latest'
       run: |
         export DISPLAY=':99.0'
-        chromedriver --disable-dev-shm-usage --url-base=/wd/hub &
         Xvfb :99 -screen 0 1024x600x24 > /dev/null 2>&1 &
     - name: Set Timezone
       uses: szenius/set-timezone@v1.0
