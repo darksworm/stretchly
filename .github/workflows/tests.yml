@@ -24,6 +24,12 @@ jobs:
         node-version: '12.18.3'
     - run: npm install npm -g
     - run: npm install
+    - uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: '88.0.4324.96'
+    - run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
     - run: npx nyc --reporter=lcov npm test
       env:
         CI: true
